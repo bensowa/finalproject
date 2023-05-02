@@ -1,212 +1,5 @@
-var currentScene = 0;
-var bitmojiX=random(50,50);
-var bitmojiY=random(50,50);
 var playerTotal = 0;
 var dealerTotal = 0;
-
-var drawBitmojiBen = function (bitmojiX,bitmojiY,h)
-{
-    fill(66, 58, 0);
-arc(bitmojiX+68, bitmojiY+109, 37, 24, -246, -93);
-arc(bitmojiX+127, bitmojiY+111, 37, 24, -469, -198);
-//ears
-fill(255,224,189);
-arc(bitmojiX+127, bitmojiY+92, 42, 37, -73, 63);
-arc(bitmojiX+63, bitmojiY+92, 42, 37, -270, -92);
-//hair behind head
-fill(66, 58, 0);
-arc(bitmojiX+64, bitmojiY+78, 37, 24, -246, -93);
-arc(bitmojiX+131, bitmojiY+82, 37, 24, -462, -280);
-
-//neck
-fill(255, 224, 189);
-rect(bitmojiX+83, bitmojiY+142, 26, 15);
-
-//shirt
-fill(204, 204, 204);
-rect(bitmojiX+50, bitmojiY+155, 90, 50);
-fill(255, 0, 0);
-text("BS", bitmojiX+86, bitmojiY+171, 164, 96);
-
-//head
-fill(255,224,189); //head
-ellipse(bitmojiX+96, bitmojiY+95, 85, 100); //head
-
-//eyes
-fill(255, 255, 255);
-ellipse(bitmojiX+80, bitmojiY+82, 17, 10); //eyes outer
-ellipse(bitmojiX+112, bitmojiY+82, 17, 10); //eyes outer
-fill(166, 176, 252); //eyes pupil
-ellipse(bitmojiX+112, bitmojiY+82, 8, 8); //eyes pupil
-ellipse(bitmojiX+80, bitmojiY+82, 8, 8); //eyes pupil
-
-//nose
-fill(255,224,189);
-arc(bitmojiX+95, bitmojiY+96, 16, 17, -95, 103);
-
-//mouth
-arc(bitmojiX+96, bitmojiY+114, 41, 16, 0, 163);
-
-// hair
-fill(84, 69, 33);
-arc(bitmojiX+109, bitmojiY+61, 35, 36, -95, 15);
-arc(bitmojiX+96, bitmojiY+55, 37, 24, -57, 44);
-arc(bitmojiX+103, bitmojiY+55, 37, 24, -81, 44);
-arc(bitmojiX+120, bitmojiY+63, 37, 24, -81, 54);
-arc(bitmojiX+126, bitmojiY+74, 37, 24, -81, 54);
-arc(bitmojiX+114, bitmojiY+56, 37, 24, -81, 66);
-arc(bitmojiX+107, bitmojiY+52, 37, 24, -246, -93);
-arc(bitmojiX+83, bitmojiY+52, 37, 24, -241, -40);
-arc(bitmojiX+73, bitmojiY+66, 37, 24, -246, -93);
-arc(bitmojiX+93, bitmojiY+52, 37, 24, -246, -93);
-
-//hat
-fill(0, 0, 0);
-arc(bitmojiX+99, bitmojiY+67, 90, 62, -176, 2);
-quad(bitmojiX+48, bitmojiY+78, bitmojiX+150, bitmojiY+78, bitmojiX+140, bitmojiY+64, bitmojiX+55, bitmojiY+67);
-fill(255, 234, 0);
-text("oakley", bitmojiX+79, bitmojiY+49, 33, 21);
-};
-
-drawBitmojiBen(117,50);
-
-
-var drawHead = function(x, y, h){
-    
-    fill(230,192,134); // ear color
-    ellipse(x+(h/100*161), y+(h/100*146), h/100*12, h/100*20); // left ear
-    ellipse(x+(h/100*238), y+(h/100*146), h/100*12, h/100*20); // right ear
-    fill(0, 0, 0); // hat color
-    ellipse(x+(h/100*200.5), y+(h/100*114), h/100*75, h/100*40); // top of hat
-    fill(230,192,134); // Skin Color
-    ellipse(x+(h/100*200), y+(h/100*150), h/100*75, h/100*100); // head shape
-    fill(0, 0, 0); // hat color
-    rect(x+(h/100*173), y+(h/100*99), h/100*54, h/100*23); // top of hat
-    rect(x+(h/100*162), y+(h/100*115), h/100*76, h/100*15); // bottom of hat
-    fill(196, 196, 196); // hat logo color
-    rect(x+(h/100*183), y+(h/100*117), h/100*10, h/100*10); // hat logo
-    fill(245, 245, 245); // white eyes
-    ellipse(x+(h/100*185), y+(h/100*145), h/100*20, h/100*10); // left eye
-    ellipse(x+(h/100*215), y+(h/100*145), h/100*20, h/100*10); // right eye
-    fill(101,56,24); // brown eyes
-    ellipse(x+(h/100*185), y+(h/100*145), h/100*8, h/100*8); // left eye ball
-    ellipse(x+(h/100*215), y+(h/100*145), h/100*8, h/100*8); // right eye ball
-    fill(0, 0, 0); // black pupils
-    ellipse(x+(h/100*185), y+(h/100*145), h/100*3, h/100*3); // left eye ball pupil
-    ellipse(x+(h/100*215), y+(h/100*145), h/100*3, h/100*3); // right eye ball pupil
-    fill(148, 123, 86); // facial hair color
-    arc(x+(h/100*200), y+(h/100*166), h/100*67, h/100*67, 0, 180); // facial hair
-    fill(0, 0, 0); // mouth color
-    arc(x+(h/100*200), y+(h/100*175), h/100*40, h/100*20, 10, 200); // mouth
-    fill(255, 255, 255); // teeth color
-    arc(x+(h/100*200), y+(h/100*176), h/100*35, h/100*15, 10, 200); // teeth
-    fill(77, 44, 21); //eyebrow color
-    triangle(x+(h/100*173), y+(h/100*137), x+(h/100*183), y+(h/100*132), x+(h/100*195), y+(h/100*135)); // left eyebrow
-    triangle(x+(h/100*223), y+(h/100*137), x+(h/100*218), y+(h/100*132), x+(h/100*205), y+(h/100*135)); // right eyebrow
-    fill(219, 182, 127); // nose color
-    bezier(x+(h/100*203), y+(h/100*153), x+(h/100*220), y+(h/100*161), x+(h/100*204), y+(h/100*173), x+(h/100*195), y+(h/100*160)); // nose
-    
-    
-};
-
-var drawBody = function(x, y, h){
-    
-    
-    fill(0, 0, 0); // shirt color
-    ellipse(x+(h/100*169), y+(h/100*221), h/100*67, h/100*35); // left shoulder
-    ellipse(x+(h/100*232), y+(h/100*221), h/100*67, h/100*35); // right shoulder
-    rect(x+(h/100*135), y+(h/100*221), h/100*130, h/100*30); // shirt
-    fill(230,192,134); // neck color
-    rect(x+(h/100*178), y+(h/100*188), h/100*42, h/100*24); // neck
-    fill(230,192,134); // skin color
-    arc(x+(h/100*200), y+(h/100*208), h/100*44, h/100*35, 0, 180); // bottom of neck
-    fill(255, 255, 255); // text color
-    textSize(h/100*18); // text size
-    text("AC", x+(h/100*150), y+(h/100*234)); // text
-    
-};
-
-var drawBitmoji = function(x, y, h){
-    
-    drawBody(140, 11, h);
-    drawHead(140, 11, h);
-    
-
-};
-
-
-var Button = function(config) {
-    this.x = config.x || 0;
-    this.y = config.y || 0;
-    this.width = config.width || 150;
-    this.height = config.height || 50;
-    this.label = config.label || "Click";
-    this.onClick = config.onClick || function() {};
-};
-
-Button.prototype.draw = function() {
-    fill(255, 0, 26);
-    rect(this.x, this.y, this.width, this.height, 5);
-    fill(0, 0, 0);
-    textSize(19);
-    textAlign(LEFT, TOP);
-    text(this.label, this.x+10, this.y+this.height/4);
-};
-
-Button.prototype.isMouseInside = function() {
-    return mouseX > this.x &&
-           mouseX < (this.x + this.width) &&
-           mouseY > this.y &&
-           mouseY < (this.y + this.height);
-};
-
-Button.prototype.handleMouseClick = function() {
-    if (this.isMouseInside()) {
-        this.onClick();
-    }
-};
-
-var startButton = new Button({
-    x: 116,
-    y: 332,
-    label: "Start!",
-    onClick: function() {
-        currentScene = 1;
-    }
-});
-startButton.draw();
-
-
-
-
-mouseClicked = function() {
-    startButton.handleMouseClick();
-    
-};
-
-
-var splashScreen = function()
-{
-    background(0, 135, 16);
-    drawBitmoji(117,150,75);
-    drawBitmojiBen(42,-6,73);
-    fill(255, 255, 255);
-    textSize(20);
-    text ("Ben Sowa", 94,206);
-    text ("Aidan Colby", 236, 207);
-    textSize(69);
-    text("Black Jack", 39, 250);
-    startButton.draw();
-};
-var playGame = function () {
-
-var canHit = true;
-
-var cardStay = false;
-var cardStay2 = false;
-var cardStay3 = false;
-var cardStay4 = false;
-var cardStay5 = false;
 
 var hit = false;
 var hit2 = false;
@@ -243,8 +36,6 @@ var suits = ["♥", "♦", "♠", "♣","♥", "♦", "♠", "♣","♥", "♦",
 
 var hasA = false;
 var pHasA = false;
-
-var results;
 
 var stillPlaying = true;
 
@@ -432,7 +223,7 @@ Button.prototype.draw = function() {
     fill(0, 0, 0);
     textSize(19);
     textAlign(LEFT, TOP);
-    text(this.label, this.x+17, this.y+this.height/4);
+    text(this.label, this.x+30, this.y+this.height/4);
 };
 
 Button.prototype.isMouseInside = function() {
@@ -451,7 +242,7 @@ Button.prototype.handleMouseClick = function() {
 var btn1 = new Button({
     x: 6,
     y: 212,
-    label: "   Hit",
+    label: " Hit",
     onClick: function() {
        
       
@@ -477,25 +268,15 @@ var btn1 = new Button({
 var btn2 = new Button({
     x: 6,
     y: 150,
-    label: "  Stay",
+    label: "Stay",
     onClick: function() {
         
        stay = true;
-       canHit = false;
        
     }
 });
 
-var btn3 = new Button({
-    x: 278,
-    y: 236,
-    label: "Restart",
-    onClick: function() {
-        
-     stillPlaying = true;   
-        
-    }
-});
+
 
 mouseClicked = function() {
     btn1.handleMouseClick();
@@ -509,9 +290,7 @@ mouseClicked = function() {
 
 draw = function() {
      
-    if (stillPlaying){
-    
-     stroke(0, 0, 0);
+     var money = 50;
      
      
      background(39, 138, 0);
@@ -529,19 +308,19 @@ draw = function() {
      rect(173, 24, 59, 92, 5);
      
      fill(255, 255, 255);
-     ellipse(203, 72, 20, 20);
-     ellipse(223, 72, 5, 5);
-     ellipse(183, 72, 5, 5);
+     ellipse(202, 72, 20, 20);
+     ellipse(221, 72, 5, 5);
+     ellipse(184, 72, 5, 5);
      ellipse(203, 92, 5, 5);
-     ellipse(203, 52, 5, 5);
-     ellipse(180, 110, 5, 5); 
-     ellipse(225, 110, 5, 5); 
-     ellipse(225, 30, 5, 5); 
-     ellipse(180, 30, 5, 5); 
-     ellipse(216, 40, 5, 5); // top right
-     ellipse(190, 40, 5, 5); // top left
-     ellipse(216, 102, 5, 5); // bottom right
-     ellipse(190, 102, 5, 5); // bottom left
+     ellipse(202, 54, 5, 5);
+     ellipse(180, 110, 5, 5);
+     ellipse(225, 110, 5, 5);
+     ellipse(225, 31, 5, 5);
+     ellipse(180, 31, 5, 5);
+     ellipse(215, 42, 5, 5);
+     ellipse(189, 42, 5, 5);
+     ellipse(216, 102, 5, 5);
+     ellipse(191, 101, 5, 5);
      
      stroke(0, 0, 0);
      
@@ -555,14 +334,16 @@ draw = function() {
          
      }
      
+     fill(0, 0, 0);
+     textSize(15);
+     text("Player Total: " + playerTotal, 115, 252);
+     text("Dealer Total: " + dealerTotal, 120, 134);
      
-     
-     if ((hit && canHit) || cardStay){
+     if (hit){
          pCards[2].draw();
-         cardStay = true;
      }
      
-     if (hit && stop && canHit){
+     if (hit && stop){
      
      
      if (pCards[2].face === "K" || pCards[2].face === "Q" || pCards[2].face === "J"){
@@ -599,12 +380,11 @@ draw = function() {
      
      }
      
-     if ((hit2 && playerTotal < 21 && canHit) || cardStay2){
+     if (hit2){
          pCards[3].draw();
-         cardStay2 = true;
      }
      
-     if (hit2 && stop2 && playerTotal < 21 && canHit){
+     if (hit2 && stop2){
          if (pCards[3].face === "K" || pCards[3].face === "Q" || pCards[3].face === "J"){
         
      playerTotal += 10;   
@@ -639,12 +419,11 @@ draw = function() {
     
      }
      
-     if ((hit3 && playerTotal < 21 && canHit) || cardStay3){
+     if (hit3){
          pCards[4].draw();
-         cardStay3 = true;
      }
      
-     if (hit3 && stop3 && playerTotal < 21 && canHit){
+     if (hit3 && stop3){
          if (pCards[4].face === "K" || pCards[4].face === "Q" || pCards[4].face === "J"){
         
      playerTotal += 10;   
@@ -679,12 +458,11 @@ draw = function() {
     
      }
      
-     if ((hit4 && playerTotal < 21 && canHit) || cardStay4){
+     if (hit4){
          pCards[5].draw();
-         cardStay4 = true;
      }
      
-     if (hit4 && stop4 && playerTotal < 21 && canHit){
+     if (hit4 && stop4){
          
          if (pCards[5].face === "K" || pCards[5].face === "Q" || pCards[5].face === "J"){
         
@@ -720,12 +498,11 @@ draw = function() {
     
      }
      
-     if ((hit5 && playerTotal < 21 && canHit) || cardStay5){
+     if (hit5){
          pCards[6].draw();
-         cardStay5 = true;
      }
      
-     if (hit5 && stop5 && playerTotal < 21 && canHit){
+     if (hit5 && stop5){
          
          if (pCards[6].face === "K" || pCards[6].face === "Q" || pCards[6].face === "J"){
         
@@ -915,84 +692,8 @@ draw = function() {
          
      }
      
-     fill(0, 0, 0);
-     textSize(15);
-     text("Player Total: " + playerTotal, 115, 252);
-     text("Dealer Total: " + dealerTotal, 120, 134);
-     
-    }
-     
-     if (playerTotal === 21 && hit !== true){
-         
-      results = "BlackJack!!!"; 
-      stillPlaying = false;
-      
-      btn3.draw();
-         
-     }
+     textSize(40);
+     text("$" + money, 134, 185);
      
      
-     else if (playerTotal > 21){
-         
-      results = "Player Bust";
-      stillPlaying = false;
-      
-      btn3.draw();
-         
-     }
-     
-     else if (dealerTotal > 21){
-         
-        results = "Dealer Bust";
-        stillPlaying = false;
-        
-        btn3.draw();
-         
-     }
-     
-     else if (stay && dealerTotal > playerTotal){
-         
-      results = "Dealer Wins";
-      stillPlaying = false;
-      
-      btn3.draw();
-         
-     }
-     
-     else if (stay4 && dealerTotal < playerTotal){
-         
-      results = "Player Win!";
-      stillPlaying = false;
-      
-      btn3.draw();
-         
-     }
-     
-     else if (stay4 && dealerTotal === playerTotal){
-         
-      results = "Push";
-      stillPlaying = false;
-      
-      btn3.draw();
-         
-     }
-     
-     else {
-         
-      results = "";   
-         
-     }
-     
-     
-     
-     fill(0, 0, 0);
-     textSize(20);
-     text(results, 276, 200);
-         
-     
-};
-};
-var draw = function() {
-  if (currentScene === 0) {splashScreen();}
-  else if (currentScene === 1) {playGame();}
 };
